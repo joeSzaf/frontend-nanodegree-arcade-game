@@ -176,6 +176,7 @@ var Engine = (function(global) {
         'images/char-boy.png',
         'images/char-princess-girl.png'
     ]);
+
     Resources.onReady(init);
 
     /* Assign the canvas' context object to the global variable (the window
