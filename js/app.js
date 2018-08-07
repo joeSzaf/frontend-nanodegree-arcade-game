@@ -61,7 +61,9 @@ Player.prototype.update = function() {
   }
 
   if (this.y < 0){
-    this.y = 0;
+    LevelUp();
+    console.log('Score: ' + score);
+    this.y = 383;
   }
 
   if (this.y > 400){
@@ -93,7 +95,7 @@ Player.prototype.handleInput = function(keyPress) {
 
 
 // Now instantiate your objects.
-let enemy = new Enemy (-100, getRndInteger(50, 200), getRndInteger(80, 100));
+let enemy = new Enemy (-100, getRndInteger(50, 200), getRndInteger(20, 80));
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
@@ -105,6 +107,17 @@ const player = new Player(202.5, 383, 100);
 let level = 1;
 let score = 0;
 let lives = 3;
+
+// Resets level after player scores a point (makes it to the water)
+const LevelUp = function(){
+  score ++;
+  level ++;
+  allEnemies.length = 0;
+  for (let i = 0; i < Math.ceil(level/3); i++){
+    let enemy = new Enemy (-100, getRndInteger(50, 200), getRndInteger(level * 10, (level * 10) + 50));
+    allEnemies.push(enemy);
+  }
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
