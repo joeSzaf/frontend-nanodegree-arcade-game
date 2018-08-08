@@ -28,6 +28,7 @@ Enemy.prototype.update = function(dt) {
       this.x = -100;
       this.speedShift();
     }
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -95,7 +96,7 @@ Player.prototype.handleInput = function(keyPress) {
 
 
 // Now instantiate your objects.
-let enemy = new Enemy (-100, getRndInteger(50, 200), getRndInteger(20, 80));
+let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 200), getRndInteger(20, 80));
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
@@ -114,7 +115,7 @@ const LevelUp = function(){
   level ++;
   allEnemies.length = 0;
   for (let i = 0; i < Math.ceil(level/3); i++){
-    let enemy = new Enemy (-100, getRndInteger(50, 200), getRndInteger(level * 10, (level * 10) + 50));
+    let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 200), getRndInteger(level * 10, (level * 10) + 50));
     allEnemies.push(enemy);
   }
 }
