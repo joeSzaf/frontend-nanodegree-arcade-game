@@ -29,6 +29,13 @@ Enemy.prototype.update = function(dt) {
       this.speedShift();
     }
 
+    if (
+      (player.x + 70 > this.x + 3 && player.x + 30 < this.x + 97) &&
+      (player.y + 140 > this.y + 85 && player.y + 110 < this.y + 140) 
+    ) {
+      console.log("hits!");
+    }
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -86,17 +93,17 @@ Player.prototype.handleInput = function(keyPress) {
       this.x += this.speed;
       break;
     case 'up':
-      this.y -= this.speed -20;
+      this.y -= this.speed -10;
       break;
     case 'down':
-      this.y += this.speed -20;
+      this.y += this.speed -10;
       break;
   }
 };
 
 
 // Now instantiate your objects.
-let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 200), getRndInteger(20, 80));
+let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(20, 80));
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
@@ -104,7 +111,7 @@ const allEnemies = [];
 allEnemies.push(enemy);
 // Place the player object in a variable called player
 
-const player = new Player(202.5, 383, 100);
+const player = new Player(202.5, 383, 50);
 let level = 1;
 let score = 0;
 let lives = 3;
@@ -115,7 +122,7 @@ const LevelUp = function(){
   level ++;
   allEnemies.length = 0;
   for (let i = 0; i < Math.ceil(level/3); i++){
-    let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 200), getRndInteger(level * 10, (level * 10) + 50));
+    let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(level * 10, (level * 10) + 50));
     allEnemies.push(enemy);
   }
 }
