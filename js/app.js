@@ -31,9 +31,9 @@ Enemy.prototype.update = function(dt) {
 
     if (
       (player.x + 70 > this.x + 3 && player.x + 30 < this.x + 97) &&
-      (player.y + 140 > this.y + 85 && player.y + 110 < this.y + 140) 
+      (player.y + 140 > this.y + 85 && player.y + 110 < this.y + 140)
     ) {
-      console.log("hits!");
+      looseLife();
     }
 
 };
@@ -71,7 +71,6 @@ Player.prototype.update = function() {
   if (this.y < 0){
     LevelUp();
     console.log('Score: ' + score);
-    this.y = 383;
   }
 
   if (this.y > 400){
@@ -120,11 +119,38 @@ let lives = 3;
 const LevelUp = function(){
   score ++;
   level ++;
+  player.y = 383;
   allEnemies.length = 0;
   for (let i = 0; i < Math.ceil(level/3); i++){
     let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(level * 10, (level * 10) + 50));
     allEnemies.push(enemy);
   }
+}
+
+// Resets level after player collides with an enemy
+const looseLife = function(){
+  lives --;
+  player.y = 383;
+  if (lives < 1) {
+    gameOver();
+  }
+  allEnemies.length = 0;
+  for (let i = 0; i < Math.ceil(level/3); i++){
+    let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(level * 10, (level * 10) + 50));
+    allEnemies.push(enemy);
+  }
+}
+
+// If lives reaches 0, game over resets the game
+const gameOver = function(){
+  score = 0;
+  level = 1;
+  player.x = 202.5;
+  allEnemies.length = 0;
+  for (let i = 0; i < Math.ceil(level/3); i++){
+    let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(level * 10, (level * 10) + 50));
+    allEnemies.push(enemy);
+}
 }
 
 // This listens for key presses and sends the keys to your
