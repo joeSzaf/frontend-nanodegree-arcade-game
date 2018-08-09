@@ -1,3 +1,24 @@
 body {
     text-align: center;
 }
+
+#scoreBox {
+  width: 505px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 32px;
+  font-family: Arial, sans-serif;
+  margin-top: 36px;
+}
+
+#scoreDiv {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+#lifeDiv {
+  width: 50%;
+  float: left;
+  text-align: right;
+}

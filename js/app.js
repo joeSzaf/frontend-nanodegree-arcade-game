@@ -115,9 +115,17 @@ let level = 1;
 let score = 0;
 let lives = 3;
 
+// Access DOM elements for the score and lives
+const scoreDiv = document.getElementById("scoreDiv");
+scoreDiv.innerHTML = `SCORE: ${score}`;
+
+const lifeDiv = document.getElementById("lifeDiv");
+lifeDiv.innerHTML = `LIVES: ${lives}`;
+
 // Resets level after player scores a point (makes it to the water)
 const LevelUp = function(){
   score ++;
+  scoreDiv.innerHTML = `SCORE: ${score}`;
   level ++;
   player.y = 383;
   allEnemies.length = 0;
@@ -130,6 +138,7 @@ const LevelUp = function(){
 // Resets level after player collides with an enemy
 const looseLife = function(){
   lives --;
+  lifeDiv.innerHTML = `LIVES: ${lives}`;
   player.y = 383;
   if (lives < 1) {
     gameOver();
@@ -144,7 +153,10 @@ const looseLife = function(){
 // If lives reaches 0, game over then resets the game
 const gameOver = function(){
   score = 0;
+  scoreDiv.innerHTML = `SCORE: ${score}`;
   level = 1;
+  lives = 3;
+  lifeDiv.innerHTML = `LIVES: ${lives}`;
   player.x = 202.5;
   allEnemies.length = 0;
   for (let i = 0; i < Math.ceil(level/3); i++){
