@@ -61,12 +61,12 @@ const Player = function(x, y, speed) {
 };
 
 Player.prototype.update = function() {
-  if (this.x < 0){
-    this.x = 0;
+  if (this.x < 2.5){
+    this.x = 2.5;
   }
 
-  if (this.x > 410){
-    this.x = 410;
+  if (this.x > 402.5){
+    this.x = 402.5;
   }
 
   if (this.y < 0){
@@ -74,8 +74,8 @@ Player.prototype.update = function() {
     console.log('Score: ' + score);
   }
 
-  if (this.y > 400){
-    this.y = 400;
+  if (this.y > 383){
+    this.y = 383;
   }
 };
 
