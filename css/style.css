@@ -2,13 +2,18 @@ body {
     text-align: center;
 }
 
-#scoreBox {
+#content {
   width: 505px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
+  margin-top: 36px;
+
+}
+
+#scoreBox {
   font-size: 32px;
   font-family: Arial, sans-serif;
-  margin-top: 36px;
 }
 
 #scoreDiv {
