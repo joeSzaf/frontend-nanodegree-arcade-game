@@ -26,6 +26,7 @@ Enemy.prototype.update = function(dt) {
 
     if (this.x > 500){
       this.x = -100;
+      this.y = getRndInteger(50, 250);
       this.speedShift();
     }
 
@@ -43,7 +44,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Change speed of the enemy on screen
+// Modifies the speed of an enemy when it reaches the side of the stage
 Enemy.prototype.speedShift = function() {
   this.speed = getRndInteger(Math.floor(0.8 * this.baseSpeed), Math.floor(1.2 * this.baseSpeed));
   console.log(this.speed);
@@ -101,15 +102,14 @@ Player.prototype.handleInput = function(keyPress) {
 };
 
 
-// Now instantiate your objects.
+// Creates first enemy
 let enemy = new Enemy (getRndInteger(-100, 500), getRndInteger(50, 250), getRndInteger(20, 80));
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
-
 allEnemies.push(enemy);
-// Place the player object in a variable called player
 
+// Place the player object in a variable called player
 const player = new Player(202.5, 383, 50);
 let level = 1;
 let score = 0;
@@ -141,7 +141,7 @@ const looseLife = function(){
   }
 }
 
-// If lives reaches 0, game over resets the game
+// If lives reaches 0, game over then resets the game
 const gameOver = function(){
   score = 0;
   level = 1;
